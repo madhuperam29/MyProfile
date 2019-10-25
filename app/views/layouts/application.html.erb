@@ -10,6 +10,48 @@
   </head>
 
   <body>
-    <%= yield %>
+  
+	  <div id="sidebar">
+
+			<ul>
+				
+				<li><%= link_to "About Me", about_path %></li>
+				<li><%= link_to "Blog", posts_path %></li>
+				<li><%= link_to "ContactMe", contact_path %></li>
+				
+				
+			</ul>
+
+			<ul>
+				<li class="category">Social</li>
+				<li><a href="https://twitter.com/Madhu56780476">Twitter</a></li>
+				<li><a href="https://github.com/madhuperam29">Github</a></li>
+				<li><a href="mailto:121015070@sastra.ac.in">Email</a></li>
+			</ul>
+		</div>
+		
+		<div id="main_content">
+		<div id="header">
+			<% if current_page?(root_path) %>
+				<p>My Profile</p>
+			<% elsif current_page?(about_path) %>
+				<p>About My self</p>
+			<% elsif current_page?(contact_path) %>
+				<p>Contact Me</p>
+			<% else %>
+				<%= link_to "Back Main Page", root_path %>
+			<% end %>
+
+			
+		</div>
+
+		<% flash.each do |name, msg| %>
+			<%= content_tag(:div, msg, class: "alert") %>
+		<% end %>
+
+		<%= yield %>
+	</div>
+		
+    
   </body>
 </html>

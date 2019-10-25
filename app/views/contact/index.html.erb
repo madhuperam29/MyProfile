@@ -1,0 +1,13 @@
+<h1>This is contact me page </h1>
+  <%= form_tag :action => 'index' do %>
+<p><label for = "book_title">Name</label>:
+<%= text_field 'books', 'name' %></p>
+<p><label for = "email">Email</label>:
+<%= text_field 'books', 'email' %></p>
+<p><label for = "message">Message</label>:
+
+<%= text_area 'message', 'description' %></p>
+<%= submit_tag "Send" %>
+
+<% end -%>
+  </div
