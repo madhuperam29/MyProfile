@@ -5,6 +5,10 @@ class PostsController < ApplicationController
 		@posts = Post.all.order('created_at DESC')
 	end
 	def new
+		 unless current_user.admin?
+			flash[:danger] = "You are not allowed to access this page."
+			redirect_to posts_path
+		 end
 		@post = Post.new
 	end
 	
