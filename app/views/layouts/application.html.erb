@@ -25,7 +25,7 @@
 			<ul>
 				<li class="category">Social</li>
 				<li><a href="https://twitter.com/Madhu56780476">Twitter</a></li>
-				<li><a href="https://github.com/madhuperam29">Github</a></li>
+				<li><a href="https://github.com/madhuperam29?tab=repositories">Github</a></li>
 				<li><a href="mailto:121015070@sastra.ac.in">Email</a></li>
 			</ul>
 		</div>
@@ -36,16 +36,36 @@
 				<p>My Profile</p>
 			<% elsif current_page?(about_path) %>
 				<p>About My self</p>
+				<div class="buttons">
+					<button class="button"><%= link_to "Back Main Page", root_path %></button>
+				</div>	
 			<% elsif current_page?(posts_path) %>
 				<p>All Posts</p>
-				<div class="buttons">
-					<button class="button"><%= link_to "New Post", new_post_path %></button>
-					<button class="button">Log Out</button>
-				</div>
+				<% if user_signed_in? %>
+				<p align="center">Logged in as <strong><%= current_user.email %></strong>
+					<div class="buttons">
+					<% if current_user.admin? %>
+						<button class="button"><%= link_to "New Post", new_post_path %></button>
+					<% end %>
+						<button class="button"><%= link_to "Log Out", destroy_user_session_path, method: :delete %></button>
+					</div>
+					
+					<% else %>
+					
+				<button class="button" style="float: right;"><%= link_to "Log In", new_user_session_path %></button>
+				<button class="button" style="float: right;"><%= link_to "Sign Up", new_user_registration_path %></button>
+			
+			
+				<% end %>
 			<% elsif current_page?(contact_path) %>
-				<p>Contact Me</p>
+				<p>Contact Me Page</p>
+				
+			<div class="buttons">
+			<button class="button"><%= link_to "Back Main Page", root_path %></button>
+			</div>	
+				
 			<% else %>
-				<%= link_to "Back Main Page", root_path %>
+				<%= link_to "Back Main Page", posts_path %>
 			<% end %>
 			
 			
