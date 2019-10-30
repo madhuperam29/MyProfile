@@ -1,4 +1,9 @@
-<%= form_for @contact do |f| %>
+<div id="page_wrapper">
+<%= form_for @contact, url: contact_index_path, remote: true do |f| %>
+	<p>
+	  <%= flash[:success] unless flash[:success].blank? %>
+	  <%= flash[:error] unless flash[:error].blank? %>
+	</p>
     <div class="col-md-6">
         <%= f.label :name %></br>
         <%= f.text_field  :name, required: true, class: "contact-form-text-area" %></br>
@@ -10,14 +15,12 @@
       <%= f.text_area :message, rows: 8, cols: 40, required: true, class: "contact-form-text-area",
                         placeholder: "Send me a message"%></br>
 
-      <div class= "hidden">
-        <%= f.label :nickname %>
-        <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
-      </div>
 
       <%= f.submit 'Send Message', class: 'btn btn-primary' %>
+	  
     </div>
   <% end %>
-  <div class="col-md-6" id="flash-message">
-    <%= render 'flash' %>
-  </div>
+  
+  
+  
+</div>
