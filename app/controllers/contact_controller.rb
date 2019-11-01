@@ -6,7 +6,7 @@ class ContactController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
     @contact.request = request
-   respond_to do |format|
+
       if @contact.deliver
         # re-initialize Contact object for cleared form
        flash[:success] = "Message sent successfully."
@@ -19,7 +19,7 @@ class ContactController < ApplicationController
 	   
 	   
       end
-	end
+
     
   end
   
